@@ -1,126 +1,13 @@
-:root {
-  --bg: #0b0f1a;
-  --card: rgba(255,255,255,0.05);
-  --text: #e5e7eb;
-}
+body{margin:0;font-family:sans-serif;background:#0b0f1a;color:#fff}
+header{text-align:center;padding:20px;color:#ffccd5;font-size:20px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+.card{background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden}
+.card img{width:100%;height:auto;object-fit:cover}
+.info{padding:8px;font-size:12px}
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-tap-highlight-color: transparent;
-}
+#lightbox{position:fixed;inset:0;background:#000;display:none;overflow:auto}
+#lightbox img{display:block;margin:auto;max-width:none;padding:40px}
 
-/* HEADER */
-header {
-  padding: 16px;
-  font-size: 20px;
-  font-weight: 600;
-}
+#musicToggle{position:fixed;bottom:20px;right:20px}
 
-/* GRID MOBILE FIRST */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
-}
-
-/* TABLET */
-@media (min-width: 600px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* DESKTOP */
-@media (min-width: 900px) {
-  .gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* CARD */
-.card {
-  background: var(--card);
-  border-radius: 14px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
-
-.card:active {
-  transform: scale(0.97);
-}
-
-/* IMAGE */
-.card img {
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: cover;
-}
-
-/* INFO */
-.info {
-  padding: 8px;
-  font-size: 12px;
-}
-
-.info p {
-  margin: 0;
-  font-weight: 500;
-}
-
-.info small {
-  opacity: 0.6;
-}
-
-/* LIGHTBOX */
-/* LIGHTBOX FULL SCROLL */
-#lightbox {
-  scroll-behavior: smooth;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  z-index: 999;
-
-  overflow: auto; /* ✅ ini kunci scroll */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* CONTAINER FOTO */
-#lightbox img {
-  touch-action: pan-y pan-x;
-  display: block;
-  margin: auto;
-
-  max-width: none;   /* ❗ penting biar tidak kekunci */
-  height: auto;
-
-  padding: 40px 10px;
-}
-
-/* BUTTON */
-#close {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  font-size: 22px;
-}
-
-#downloadBtn {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  border-radius: 30px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  text-decoration: none;
-  color: white;
-}
+#loveCanvas{position:fixed;inset:0;pointer-events:none}
