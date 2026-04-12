@@ -1,19 +1,118 @@
-body{margin:0;font-family:sans-serif;background:#0b0f1a;color:#fff}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:14px}
-.card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+:root {
+  --bg: #0b0f1a;
+  --card: rgba(255,255,255,0.05);
+  --text: #e5e7eb;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* HEADER */
+header {
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* GRID MOBILE FIRST */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+/* TABLET */
+@media (min-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+/* IMAGE */
 .card img {
   width: 100%;
-  aspect-ratio: auto;
+  height: auto;
+  max-height: 250px;
   object-fit: cover;
 }
-.info{padding:8px;font-size:13px}
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);display:none;overflow:auto;padding:40px}
-#lightbox img{display:block;margin:auto;max-width:none}
-#close{position:fixed;top:20px;right:20px;cursor:pointer}
-#downloadBtn{position:fixed;top:20px;right:70px;padding:6px 12px;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;border-radius:6px}
+
+/* INFO */
+.info {
+  padding: 8px;
+  font-size: 12px;
+}
+
+.info p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.info small {
+  opacity: 0.6;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  z-index: 999;
+  padding: 20px;
+}
+
+#lightbox img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/* BUTTON */
+#close {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
+}
+
+#downloadBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: white;
+}
