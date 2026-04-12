@@ -26,6 +26,7 @@ async function loadGallery(){
 let images = [];
 let currentIndex = 0;
 
+/* ================= LIGHTBOX ================= */
 function openLightbox(index){
   currentIndex = index;
 
@@ -36,8 +37,9 @@ function openLightbox(index){
   imgBox.src = images[index].src;
   downloadBtn.href = images[index].src;
 
-  lightbox.classList.add("show"); // 🔥 pakai class
+  lightbox.classList.add("show");
 }
+
 function closeLightbox(){
   document.getElementById("lightbox").classList.remove("show");
 }
@@ -48,7 +50,7 @@ document.addEventListener("keydown", (e) => {
   if(e.key === "Escape") closeLightbox();
 });
 
-// ================= MUSIC =================
+/* ================= MUSIC ================= */
 const music = document.getElementById("bg-music");
 const btn = document.getElementById("musicToggle");
 
@@ -65,7 +67,6 @@ btn.onclick = () => {
   isPlaying = !isPlaying;
 };
 
-// autoplay fix
 document.body.addEventListener("click", () => {
   if(!isPlaying){
     music.play();
@@ -74,8 +75,7 @@ document.body.addEventListener("click", () => {
   }
 }, { once: true });
 
-
-// ================= LOVE EFFECT =================
+/* ================= LOVE EFFECT ================= */
 const canvas = document.getElementById("loveCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -126,4 +126,5 @@ function animate(){
 
 animate();
 
+/* ================= INIT ================= */
 loadGallery();
