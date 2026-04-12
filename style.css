@@ -79,21 +79,29 @@ header {
 }
 
 /* LIGHTBOX */
+/* LIGHTBOX FULL SCROLL */
 #lightbox {
+  scroll-behavior: smooth;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.95);
   display: none;
   z-index: 999;
-  padding: 20px;
+
+  overflow: auto; /* ✅ ini kunci scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
+/* CONTAINER FOTO */
 #lightbox img {
-  max-width: 100%;
-  height: auto;
+  touch-action: pan-y pan-x;
   display: block;
   margin: auto;
-  border-radius: 10px;
+
+  max-width: none;   /* ❗ penting biar tidak kekunci */
+  height: auto;
+
+  padding: 40px 10px;
 }
 
 /* BUTTON */
