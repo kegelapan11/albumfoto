@@ -1,82 +1,57 @@
-async function loadGallery() {
-  try {
-    // anti cache biar selalu update dari GitHub
-    const res = await fetch("https://kegelapan11.github.io/albumfoto/data.json?v=" + Date.now());
-    const data = await res.json();
-
-    const gallery = document.querySelector(".gallery");
-    gallery.innerHTML = "";
-
-    data.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "card";
-
-      div.innerHTML = `
-        <img src="images/${item.file}" loading="lazy">
-        <div class="info">
-          <p>${item.caption || ""}</p>
-          <small>${item.date}</small>
-        </div>
-      `;
-
-      gallery.appendChild(div);
-    });
-
-    initLightbox();
-
-  } catch (err) {
-    console.error("Gagal load data:", err);
-  }
+async function loadGallery(){
+const res=await fetch("data.json?v="+Date.now());
+const data=await res.json();
+const g=document.querySelector(".gallery");
+g.innerHTML="";
+data.forEach((i,idx)=>{
+const d=document.createElement("div");
+d.className="card";
+d.innerHTML=`<img src="images/${i.file}"><div class="info"><p>${i.caption||""}</p></div>`;
+d.onclick=()=>open(idx);
+g.appendChild(d);
+});
+initLightbox();
 }
 
-// ================= LIGHTBOX =================
-function initLightbox() {
-  const images = document.querySelectorAll(".card img");
-  const lightbox = document.getElementById("lightbox");
-  const imgBox = document.getElementById("lightbox-img");
-  const downloadBtn = document.getElementById("downloadBtn");
+let images=[];
 
-  images.forEach(img => {
-    img.onclick = () => {
-      lightbox.style.display = "block";
-      imgBox.src = img.src;
-      downloadBtn.href = img.src;
-    };
-  });
-
-  // tombol close
-  document.getElementById("close").onclick = () => {
-    lightbox.style.display = "none";
-  };
-
-  // klik background = close
-  lightbox.onclick = (e) => {
-    if (e.target.id === "lightbox") {
-      lightbox.style.display = "none";
-    }
-  };
-
-  // swipe down untuk close (mobile)
-  let startY = 0;
-
-  lightbox.addEventListener("touchstart", e => {
-    startY = e.touches[0].clientY;
-  });
-
-  lightbox.addEventListener("touchend", e => {
-    let endY = e.changedTouches[0].clientY;
-    if (endY - startY > 100) {
-      lightbox.style.display = "none";
-    }
-  });
-
-  // ESC key close (desktop)
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      lightbox.style.display = "none";
-    }
-  });
+function initLightbox(){
+images=document.querySelectorAll(".card img");
 }
 
-// ================= INIT =================
+function open(i){
+const lb=document.getElementById("lightbox");
+const img=document.getElementById("lightbox-img");
+img.src=images[i].src;
+lb.style.display="block";
+}
+
+document.getElementById("close").onclick=()=>{
+document.getElementById("lightbox").style.display="none";
+};
+
 loadGallery();
+
+// music
+const music=document.getElementById("bg-music");
+const btn=document.getElementById("musicToggle");
+let play=false;
+btn.onclick=()=>{
+if(!play){music.play();btn.innerHTML="⏸️";}
+else{music.pause();btn.innerHTML="▶️";}
+play=!play;
+};
+
+// love
+const c=document.getElementById("loveCanvas");
+const ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let hearts=[];
+function h(x,y){hearts.push({x,y,v:1})}
+document.onclick=e=>{for(let i=0;i<5;i++)h(e.clientX,e.clientY)}
+function loop(){
+ctx.clearRect(0,0,c.width,c.height);
+hearts.forEach((o,i)=>{o.y+=o.v;ctx.fillText("❤️",o.x,o.y);if(o.y>c.height)hearts.splice(i,1)});
+requestAnimationFrame(loop);
+}
+loop();
