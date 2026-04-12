@@ -28,6 +28,7 @@ let currentIndex = 0;
 
 function openLightbox(index){
   currentIndex = index;
+
   const lightbox = document.getElementById("lightbox");
   const imgBox = document.getElementById("lightbox-img");
   const downloadBtn = document.getElementById("downloadBtn");
@@ -35,11 +36,10 @@ function openLightbox(index){
   imgBox.src = images[index].src;
   downloadBtn.href = images[index].src;
 
-  lightbox.style.display = "flex";
+  lightbox.classList.add("show"); // 🔥 pakai class
 }
-
 function closeLightbox(){
-  document.getElementById("lightbox").style.display = "none";
+  document.getElementById("lightbox").classList.remove("show");
 }
 
 document.getElementById("close").onclick = closeLightbox;
