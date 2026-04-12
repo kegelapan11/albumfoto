@@ -97,7 +97,6 @@ header {
 }
 #lightbox.show {
   opacity: 1;
-  display: flex !important;
 }
 /* ================= IMAGE FULLSCREEN ================= */
 #lightbox img {
