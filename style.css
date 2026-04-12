@@ -1,13 +1,126 @@
-body{margin:0;font-family:sans-serif;background:#0b0f1a;color:#fff}
-header{text-align:center;padding:20px;color:#ffccd5;font-size:20px}
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-.card{background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden}
-.card img{width:100%;height:auto;object-fit:cover}
-.info{padding:8px;font-size:12px}
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(180deg,#0b0f1a,#1a0b1f);
+  color: #fff;
+}
 
-#lightbox{position:fixed;inset:0;background:#000;display:none;overflow:auto}
-#lightbox img{display:block;margin:auto;max-width:none;padding:40px}
+/* HEADER */
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  color: #ffccd5;
+}
 
-#musicToggle{position:fixed;bottom:20px;right:20px}
+/* GRID */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+  padding: 10px;
+}
 
-#loveCanvas{position:fixed;inset:0;pointer-events:none}
+@media (min-width:600px){
+  .gallery { grid-template-columns: repeat(3,1fr); }
+}
+
+@media (min-width:900px){
+  .gallery { grid-template-columns: repeat(4,1fr); }
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:active {
+  transform: scale(0.95);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+/* INFO */
+.info {
+  padding: 8px;
+  font-size: 12px;
+}
+
+.info p {
+  margin: 0;
+  word-break: break-word;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FULLSCREEN AUTO FIT */
+#lightbox img {
+  max-width: 100%;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  transition: transform 0.3s ease;
+}
+
+/* CLOSE */
+#close {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* DOWNLOAD */
+#downloadBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  text-decoration: none;
+}
+
+/* MUSIC BUTTON */
+#musicToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 18px;
+}
+
+/* LOVE CANVAS */
+#loveCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
