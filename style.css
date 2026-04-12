@@ -1,7 +1,17 @@
 body{margin:0;font-family:sans-serif;background:#0b0f1a;color:#fff}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:14px}
-.card{background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden}
-.card img{width:100%;cursor:pointer}
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
 .info{padding:8px;font-size:13px}
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);display:none;overflow:auto;padding:40px}
 #lightbox img{display:block;margin:auto;max-width:none}
